@@ -20,8 +20,8 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = 'fast_rake'
 
-  #s.add_runtime_dependency '...', '~> x.y.z'
   s.add_development_dependency 'gemma', '~> 3.0.0'
+  s.add_development_dependency 'rubocop'
 
   s.files       = Dir.glob('lib/**/*.rb')
 
