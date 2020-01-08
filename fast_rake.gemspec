@@ -19,8 +19,6 @@ Gem::Specification.new do |s|
     It was created to make developer pre-commit builds really fast, but still able to cover a lot of tests.
   '
 
-  s.rubyforge_project = 'fast_rake'
-
   s.add_development_dependency 'gemma', '~> 3.0.0'
   s.add_development_dependency 'rubocop'
 
