@@ -1,6 +1,5 @@
+# frozen_string_literal: true
+
 module FastRake
-  VERSION_MAJOR = 0
-  VERSION_MINOR = 2
-  VERSION_PATCH = 7
-  VERSION = [VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH].join('.')
+  VERSION = '0.3.0'
 end

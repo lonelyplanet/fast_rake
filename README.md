@@ -8,65 +8,81 @@ without overloading the computer by spinning them all up at once. We were able t
 
 ### Usage
 For example, in lib/tasks/fast.rake
-    require 'fast_rake'
 
-    namespace :fast do
-      
-      setup_tasks = [
-        "environment:testing",
-        "clean_and_package",
-        "db:migrate"
-      ]
+```ruby
+require 'fast_rake'
 
-      tests = [
-        "spec:covered",
-        "cucumber:firefox_g1",
-        "cucumber:firefox_g2",
-        "cucumber:firefox_g2",
-        "cucumber:firefox_ungrouped",
-        "cucumber:firefox_offline_g1",
-        "cucumber:firefox_offline_g2",
-        "cucumber:firefox_offline_g2",
-        "cucumber:firefox_offline_ungrouped",
-        "jasmine:integration",
-        "jasmine:chrome_integration",
-        "jasmine:phantom",
-        "quality"
-      ]
-      
-      FastRake::fast_runner_task(:all, setup_tasks, tests, true)
-    end
-    task :fast, [:count, :list] => "fast:all"
-  
+namespace :fast do
+
+  setup_tasks = [
+    "environment:testing",
+    "clean_and_package",
+    "db:migrate"
+  ]
+
+  tests = [
+    "spec:covered",
+    "cucumber:firefox_g1",
+    "cucumber:firefox_g2",
+    "cucumber:firefox_g2",
+    "cucumber:firefox_ungrouped",
+    "cucumber:firefox_offline_g1",
+    "cucumber:firefox_offline_g2",
+    "cucumber:firefox_offline_g2",
+    "cucumber:firefox_offline_ungrouped",
+    "jasmine:integration",
+    "jasmine:chrome_integration",
+    "jasmine:phantom",
+    "quality"
+  ]
+
+  FastRake::fast_runner_task(:all, setup_tasks, tests, true)
+end
+
+task :fast, [:count, :list] => "fast:all"
+```
+
 Then task:all will have been created, which when run will run the full set of your tests.
 
 This will autodetect the number of processors that you have available to run your tasks. If you want to specify the number of processes that should run in parallel, then this accepts a fifth positional parameter. Or you can pass an integer from the command line
 
-    rake fast[4]
+```ruby
+rake fast[4]
+```
 
 The fourth parameter specifies whether it should fail fast (stop after the first failure) or instead execute every task (and show all failures).
 
 These tasks can also be executed with a specific list of tasks (with or without a processor count):
 
-    rake fast:all[,'task1 task2']"
+```ruby
+rake fast:all[,'task1 task2']"
+```
+
 or
-    rake fast:all[4,'task1 task2']"
+
+```ruby
+rake fast:all[4,'task1 task2']"
+```
 
 Or you can use:
 
-    FastRake::fast_runner_task(:smaller_set, setup_tasks, a_smaller_subset, false)
+```ruby
+FastRake::fast_runner_task(:smaller_set, setup_tasks, a_smaller_subset, false)
+```
 
 to create a single task named fast:smaller_set that runs a specific subset of tasks.
 
 ### Databases
 A database is created for each task by the name of the task, to use these you should modify your database.yml to contain something like:
 
-    test:
-      adapter: postgresql
-      host: localhost
-      database: <%= ENV["TEST_DB_NAME"] %>
-      username: <%= ENV['USER'] %>
-      min_messages: WARNING
+```yml
+test:
+  adapter: postgresql
+  host: localhost
+  database: <%= ENV["TEST_DB_NAME"] %>
+  username: <%= ENV['USER'] %>
+  min_messages: WARNING
+```
 
 ### Environment variables
 Some environment variables are setup for your use.
@@ -75,13 +91,12 @@ TEST_DB_NAME: this is the name of the database that has been created
 
 TEST_ENV_NUMBER: this is an incrementing number for each task that is started. Useful for ensuring unique resources for running tests (ports etc)
 
-
-
 ### INSTALLATION
 Include in your Gemfile
 
-    gem 'fast_rake'
-
+```ruby
+gem 'fast_rake'
+```
 
 ### LICENSE
 
@@ -107,4 +122,3 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-

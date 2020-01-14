@@ -6,19 +6,34 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
+    ast (2.4.0)
     gemma (3.0.0)
       highline (~> 1.6.15)
       minitest (~> 4.3.3)
       rake (~> 10.0.3)
       rdoc (~> 3.12.0)
       yard (~> 0.8.3)
-    highline (1.6.15)
-    json (1.7.7)
+    highline (1.6.21)
+    jaro_winkler (1.5.4)
+    json (1.8.6)
     minitest (4.3.3)
-    rake (10.0.3)
+    parallel (1.19.1)
+    parser (2.7.0.2)
+      ast (~> 2.4.0)
+    rainbow (3.0.0)
+    rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
-    yard (0.8.5.2)
+    rubocop (0.79.0)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.7.0.1)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 1.7)
+    ruby-progressbar (1.10.1)
+    unicode-display_width (1.6.0)
+    yard (0.8.7.6)
 
 PLATFORMS
   ruby
@@ -26,3 +41,7 @@ PLATFORMS
 DEPENDENCIES
   fast_rake!
   gemma (~> 3.0.0)
+  rubocop
+
+BUNDLED WITH
+   2.1.4
